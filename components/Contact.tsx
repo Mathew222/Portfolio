@@ -1,27 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { RESUME_DATA } from '../constants';
 import { SectionId } from '../types';
-import { Mail, Send } from 'lucide-react';
+import { Mail, Send, CheckCircle2 } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Contact: React.FC = () => {
     const { ref, isVisible } = useScrollAnimation(0.2);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
+    const [state, handleSubmit] = useForm("xzznjrlo");
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const subject = `Portfolio Contact from ${formData.name}`;
-        const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-        window.location.href = `mailto:${RESUME_DATA.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    };
+    if (state.succeeded) {
+        return (
+            <section id={SectionId.CONTACT} ref={ref as any} className="py-16 md:py-24 bg-white dark:bg-zinc-950 relative overflow-hidden transition-colors duration-300">
+                <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col items-center justify-center min-h-[400px] text-center">
+                    <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-6 animate-scale-in">
+                        <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-display font-bold text-black dark:text-white mb-4">Message Sent!</h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mb-8">
+                        Thanks for reaching out, {RESUME_DATA.name.split(' ')[0]}. I'll get back to you as soon as possible.
+                    </p>
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
-    };
+                    <div className="flex gap-6 mt-8">
+                        <a href={`https://${RESUME_DATA.socials.instagram}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black dark:hover:text-white transition-colors">Instagram</a>
+                        <a href={`https://${RESUME_DATA.socials.linkedin}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black dark:hover:text-white transition-colors">LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id={SectionId.CONTACT} ref={ref as any} className="py-16 md:py-24 bg-white dark:bg-zinc-950 relative overflow-hidden transition-colors duration-300">
@@ -79,40 +86,40 @@ const Contact: React.FC = () => {
                                 <input
                                     type="text"
                                     id="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
+                                    name="name"
                                     className="w-full bg-transparent border-b-2 border-gray-300 dark:border-zinc-700 py-3 text-black dark:text-white text-lg focus:outline-none focus:border-black dark:focus:border-white transition-colors rounded-none placeholder-gray-400 font-display"
                                     placeholder="YOUR NAME"
                                     required
                                 />
+                                <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                             </div>
                             <div className="space-y-1">
                                 <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-black dark:text-white">Email</label>
                                 <input
                                     type="email"
                                     id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
+                                    name="email"
                                     className="w-full bg-transparent border-b-2 border-gray-300 dark:border-zinc-700 py-3 text-black dark:text-white text-lg focus:outline-none focus:border-black dark:focus:border-white transition-colors rounded-none placeholder-gray-400 font-display"
                                     placeholder="YOUR@EMAIL.COM"
                                     required
                                 />
+                                <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
                             </div>
                             <div className="space-y-1">
                                 <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-black dark:text-white">Message</label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     rows={4}
-                                    value={formData.message}
-                                    onChange={handleChange}
                                     className="w-full bg-transparent border-b-2 border-gray-300 dark:border-zinc-700 py-3 text-black dark:text-white text-lg focus:outline-none focus:border-black dark:focus:border-white transition-colors rounded-none placeholder-gray-400 font-display resize-none"
                                     placeholder="TELL ME ABOUT YOUR PROJECT"
                                     required
                                 ></textarea>
+                                <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                             </div>
 
-                            <button type="submit" className="w-full bg-black dark:bg-white text-white dark:text-black py-4 md:py-5 px-6 md:px-8 font-display font-bold text-lg md:text-xl uppercase tracking-wider hover:bg-accent dark:hover:bg-accent hover:text-white transition-colors flex items-center justify-between group">
-                                Send Message
+                            <button type="submit" disabled={state.submitting} className="w-full bg-black dark:bg-white text-white dark:text-black py-4 md:py-5 px-6 md:px-8 font-display font-bold text-lg md:text-xl uppercase tracking-wider hover:bg-accent dark:hover:bg-accent hover:text-white transition-colors flex items-center justify-between group disabled:opacity-50 disabled:cursor-not-allowed">
+                                {state.submitting ? 'Sending...' : 'Send Message'}
                                 <span className="w-2 h-2 bg-white dark:bg-black rounded-full group-hover:scale-150 transition-transform"></span>
                             </button>
                         </form>
