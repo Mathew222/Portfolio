@@ -7,11 +7,11 @@ export const RESUME_DATA = {
   bio: "Engineering student specializing in Computer Science and AI, with expertise in machine learning, data analysis, and software development. Driven by a passion for AI innovation and problem-solving in real-world applications.",
   location: "Ernakulam, Kerala",
   email: "mathewbinu2004@gmail.com",
-  phone: "7907803779",
+  phone: "+91 7907803779",
   socials: {
     github: "github.com/Mathew222",
-    linkedin: "linkedin.com/in/mathew-p-binu/",
-    twitter: "twitter.com"
+    linkedin: "www.linkedin.com/in/mathew-p-binu",
+    instagram: "www.instagram.com/_mathew_binu_?igsh=MWZ6cHJqNzU4ejNxeQ%3D%3D&utm_source=qr"
   },
   profileUrl: "/profile.jpg"
 };
