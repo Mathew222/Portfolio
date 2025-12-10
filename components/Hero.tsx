@@ -157,6 +157,8 @@ const Hero: React.FC = () => {
               <img
                 src={RESUME_DATA.profileUrl}
                 alt="Mathew P Binu"
+                fetchPriority="high"
+                loading="eager"
                 className="h-full w-auto object-cover object-top contrast-110 rounded-3xl"
                 style={{ maskImage: 'linear-gradient(to bottom, black 0%, black 90%, transparent 100%)' }}
               />
