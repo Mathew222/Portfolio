@@ -153,14 +153,16 @@ const Hero: React.FC = () => {
 
           {/* Cutout Image */}
           <div className="relative z-10 -mt-2 -mb-2 md:-mt-[2vw] md:-mb-[4vw] h-[45vh] md:h-[60vh] w-auto animate-fade-in transition-transform duration-500 hover:scale-105">
-            <img
-              src={RESUME_DATA.profileUrl}
-              alt="Mathew P Binu"
-              className="h-full w-auto object-cover object-top contrast-110 drop-shadow-2xl rounded-3xl"
-              style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)' }}
-            />
+            <div className="h-full w-auto drop-shadow-[0_0_25px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+              <img
+                src={RESUME_DATA.profileUrl}
+                alt="Mathew P Binu"
+                className="h-full w-auto object-cover object-top contrast-110 rounded-3xl"
+                style={{ maskImage: 'linear-gradient(to bottom, black 0%, black 90%, transparent 100%)' }}
+              />
+            </div>
             {/* Floating Glass Label with POP UP Animation - Tag style on Profile Pic (Partially Outside) */}
-            <div className="absolute top-6 -left-2 md:top-8 md:-left-3 backdrop-blur-xl bg-white/60 dark:bg-black/40 border border-white/40 dark:border-white/10 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl animate-pop-up flex items-center gap-1.5 hover:scale-110 transition-transform origin-center z-30" style={{ animationDelay: '1.2s' }}>
+            <div className="absolute top-32 -left-2 md:top-48 md:-left-3 backdrop-blur-xl bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/20 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl animate-pop-up flex items-center gap-1.5 hover:scale-110 transition-transform origin-center z-30" style={{ animationDelay: '1.2s' }}>
               <div className="w-2 h-2 md:w-3 md:h-3 bg-accent rounded-full animate-pulse"></div>
               <span className="font-sans font-bold text-[10px] md:text-xs uppercase tracking-wider whitespace-nowrap text-black dark:text-white">Open for work</span>
             </div>
