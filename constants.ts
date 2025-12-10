@@ -13,7 +13,7 @@ export const RESUME_DATA = {
     linkedin: "www.linkedin.com/in/mathew-p-binu",
     instagram: "www.instagram.com/_mathew_binu_?igsh=MWZ6cHJqNzU4ejNxeQ%3D%3D&utm_source=qr"
   },
-  profileUrl: "/profile.jpg"
+  profileUrl: "/profile.png"
 };
 
 export const SKILLS_DATA: SkillData[] = [
