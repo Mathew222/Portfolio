@@ -34,7 +34,6 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
     { label: 'Experience', id: SectionId.EXPERIENCE },
     { label: 'Education', id: SectionId.EDUCATION },
     { label: 'Certs', id: SectionId.CERTIFICATES },
-    { label: 'About', id: SectionId.ABOUT },
     { label: 'Contact', id: SectionId.CONTACT },
   ];
 
@@ -45,8 +44,8 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
           <div className="flex items-center gap-4">
             <div className="flex-shrink-0 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="flex items-baseline">
-                  <span className="font-display font-bold text-3xl tracking-tight text-black dark:text-white transition-colors">Mathew</span>
-                  <span className="w-2 h-2 rounded-full bg-accent ml-1 group-hover:animate-ping"></span>
+                <span className="font-display font-bold text-3xl tracking-tight text-black dark:text-white transition-colors">Mathew</span>
+                <span className="w-2 h-2 rounded-full bg-accent ml-1 group-hover:animate-ping"></span>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -58,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               </a>
             </div>
           </div>
-          
+
           <div className="hidden lg:flex items-center gap-8 xl:gap-12">
             <div className="flex items-baseline space-x-8 xl:space-x-12">
               {navLinks.map((link) => (
@@ -71,8 +70,8 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
                 </button>
               ))}
             </div>
-            
-            <button 
+
+            <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-black dark:text-white"
               aria-label="Toggle Dark Mode"
@@ -80,9 +79,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
           </div>
-          
+
           <div className="flex lg:hidden items-center gap-4">
-             <button 
+            <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-black dark:text-white"
             >
@@ -101,9 +100,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
       {/* Mobile menu */}
       {isOpen && (
         <div className="lg:hidden bg-white dark:bg-zinc-950 fixed inset-0 z-40 flex flex-col items-center justify-center space-y-8 animate-fade-in transition-colors duration-300">
-           <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 p-2 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-full">
-             <X className="h-8 w-8" />
-           </button>
+          <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 p-2 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-full">
+            <X className="h-8 w-8" />
+          </button>
           {navLinks.map((link) => (
             <button
               key={link.id}
